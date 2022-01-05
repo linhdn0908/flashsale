@@ -22,18 +22,18 @@ function Header() {
   useEffect(() => { }, [userInfo]);
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <Navbar.Brand href="/">MAGESTORE</Navbar.Brand>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
+        <Navbar.Collapse id="responsive-navbar-nav" style={{ justifyContent: 'flex-end' }}>
           <Nav>
             {userInfo ? (
               <>
-                <Nav.Link href="/flashsale">Flash Sale</Nav.Link>
+                {/* <Nav.Link href="/flashsale">Flash Sale</Nav.Link> */}
                 <NavDropdown
-                  title={`${userInfo.name}`}
+                  title={`Hi, ${userInfo.name}`}
                   id="collasible-nav-dropdown"
                   style={{ justifyContent: 'flex-end' }}
                 >

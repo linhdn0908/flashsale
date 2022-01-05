@@ -30,15 +30,25 @@ function Product(props) {
     // setIsModalVisible(true);
   };
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
+  // const handleOk = () => {
+  //   setIsModalVisible(false);
+  // };
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+  // const handleCancel = () => {
+  //   setIsModalVisible(false);
+  // };
   return (
     <>
+      <div
+        style={{
+          textAlign: "center",
+          fontSize: 24,
+          fontWeight: 500,
+          marginBottom: 30,
+        }}
+      >
+        FLASH SALE DEALS TODAY 🔥
+      </div>
       {loading && <Loading />}
       {products &&
         products.map((product) => (

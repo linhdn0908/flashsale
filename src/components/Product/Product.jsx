@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Modal } from "antd";
+import { Button } from "antd";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../actions/productActions";
 import Loading from "../../components/Loading";
-import ErrorMessage from "../../components/ErrorMessage";
+// import ErrorMessage from "../../components/ErrorMessage";
+import { FiCheckCircle, FiAlertCircle } from "react-icons/fi";
 
 function Product(props) {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -13,6 +14,7 @@ function Product(props) {
   const userLogin = useSelector((state) => state.userLogin);
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
+  const [isProcessing, setIsProcessing] = useState(false);
 
   let navigate = useNavigate();
   const { userInfo } = userLogin;
@@ -24,8 +26,8 @@ function Product(props) {
   }, [dispatch, userInfo, navigate]);
 
   const showModal = (productId) => {
-    debugger;
-    setIsModalVisible(true);
+    setIsProcessing(true);
+    // setIsModalVisible(true);
   };
 
   const handleOk = () => {
@@ -40,7 +42,11 @@ function Product(props) {
       {loading && <Loading />}
       {products &&
         products.map((product) => (
-          <div className="product-container">
+          <div
+            key={product._id}
+            style={{ margin: "0 auto" }}
+            className={`product-container ${isProcessing ? "processing" : ""}`}
+          >
             <div className="product-image">
               <img src={product.img_url} alt="demo" />
             </div>
@@ -54,9 +60,59 @@ function Product(props) {
                 <button onClick={() => showModal(product._id)}>Buy Now</button>
               </div>
             </div>
+            <div
+              className="process-order"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                // alignItems: "center",
+                fontSize: 16,
+              }}
+            >
+              <div style={{ marginBottom: 30, fontSize: 20, fontWeight: 500 }}>
+                Buying your product...
+              </div>
+              <div>Your current QueueID #1</div>
+              <div
+                style={{
+                  display: "flex",
+                  height: 150,
+                  flexDirection: "column",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                }}
+              >
+                <div>Order placed succesfully</div>
+                <FiCheckCircle style={{ fontSize: 50, color: "#79e779" }} />
+                <div style={{ fontSize: 14 }}>Order number #434345</div>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  height: 150,
+                  flexDirection: "column",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                }}
+              >
+                <div>Product no longer available</div>
+                <div>You just missed it.</div>
+                <FiAlertCircle style={{ fontSize: 50, color: "#f93434" }} />
+              </div>
+
+              {/* <Loading size={50} /> */}
+
+              <Button
+                type="default"
+                onClick={() => setIsProcessing(false)}
+                style={{ marginTop: 10 }}
+              >
+                Close
+              </Button>
+            </div>
           </div>
         ))}
-      <Modal
+      {/* <Modal
         title="Order Detail"
         visible={isModalVisible}
         // onOk={handleOk}
@@ -66,7 +122,7 @@ function Product(props) {
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
-      </Modal>
+      </Modal> */}
     </>
   );
 }

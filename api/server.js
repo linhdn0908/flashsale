@@ -5,23 +5,30 @@ import colors from "colors";
 import path from "path";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 import bodyParser from "body-parser";
 import cors from "cors";
+import initQueue from "./queue/queue.js";
+
+initQueue()
+
 
 dotenv.config();
 
 connectDB();
 const app = express(); // main thing
 
-app.use(cors());
+app.options('*', cors()) // include before other routes 
+app.use(cors())
 
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.json()); // to accept json data
 
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/orders", orderRoutes);
 
 // --------------------------deployment------------------------------
 const __dirname = path.resolve();

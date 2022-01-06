@@ -3,7 +3,7 @@ import { Layout, Menu, Breadcrumb, Modal } from 'antd';
 import Login from "./page/LoginScreen/LoginScreen";
 import Register from "./page/RegisterScreen/RegisterScreen";
 import LandingPage from "./page/LandingPage";
-import Product from "./components/Product/Product";
+import FlashSalePage from "./page/FlashSalePage/FlashSalePage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 const { Content, Footer } = Layout;
@@ -13,7 +13,7 @@ function App() {
       <Layout className="layout" id="components-layout-demo-top">
         <Header>
         </Header>
-        <Content style={{ padding: '0 50px' }}>
+        <Content>
           {/* <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>FLASH SALE</Breadcrumb.Item>
           </Breadcrumb> */}
@@ -23,11 +23,11 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/flashsale" element={<Product />} />
+              <Route path="/flashsale" element={<FlashSalePage />} />
             </Routes>
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>Created by Linh Dang</Footer>
+        {/* <Footer style={{ textAlign: 'center' }}>Created by Linh Dang</Footer> */}
       </Layout>
     </BrowserRouter>
 

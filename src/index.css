@@ -13,7 +13,7 @@ code {
 }
 
 .site-layout-content {
-  min-height: calc(100vh - 188px);
+  /* min-height: calc(100vh - 188px); */
   padding: 24px;
   background: #fff;
 }
@@ -30,8 +30,3 @@ code {
   height: 31px; */
   /* color */
 }
-
-/* .ant-row-rtl #components-layout-demo-top .logo {
-  float: right;
-  margin: 16px 0 16px 24px;
-} */
